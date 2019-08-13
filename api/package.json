@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "casual": "^1.6.2",
+    "lodash": "^4.17.15"
+  }
+}
