@@ -113,6 +113,7 @@
 
 
   const columnDefs = [
+      { field: "search" , hide: true, lockVisible: true, },
       {
         headerName: "Visita",
         children:[ 
@@ -153,6 +154,7 @@
         const gridInit = grid => {
           grid.api.setDatasource(dataSource);
           //grid.api.setServerSideDatasource(serverSideDataSource);
+          window.grid = grid;
         }
 
         return (<div 

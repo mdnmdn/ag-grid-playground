@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "env": {
+    "MONGODB_URI": "mongodb://uxeu7cp5wujuzzzfqrge:8GsAfWwhiCRHY80ruzP7@bywb1doyrsk5yxm-mongodb.services.clever-cloud.com:27017/bywb1doyrsk5yxm"
+  },
+  "routes": [{ "src": "/mongo", "dest": "/mongo.html" }]
+}

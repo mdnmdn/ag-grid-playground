@@ -133,7 +133,7 @@ const parseFilters = filterModel => {
         value: [
           {operator: filter1.operator, value: filter1.value},
           {operator: filter2.operator, value: filter2.value},
-        ]
+        ],
       });
     }
   });
@@ -143,30 +143,41 @@ const parseFilters = filterModel => {
 
 const createFilter = filter => {
   
+  l({ filter });
+
   const { field, operator, value } = filter;
  
   if (operator === 'contains') {
     return { [field]: { $regex: value, $options: 'i' } }
   }
 
-  if (filter.operator === 'startsWith') {
+  if (operator === 'startsWith') {
     return { [field]: { $regex: `^${value}`, $options: 'i' } }
   }
 
-  if (filter.operator === 'endsWith') {
+  if (operator === 'endsWith') {
     return { [field]: { $regex: `^${value}$`, $options: 'i' } }
   }
 
-  if (filter.operator === 'equals') {
+  if (operator === 'equals') {
     return { [field]: { $regex: `${value}$`, $options: 'i' } }
   }
 
-  if (filter.operator === 'lessThan') {
+  if (operator === 'lessThan') {
     return { [field]: { $lt: value } }
   }
 
-  if (filter.operator === 'greaterThan') {
+  if (operator === 'greaterThan') {
     return { [field]: { $gt: value } }
+  }
+
+  if (operator === 'OR') {
+    return { 
+      $or: [
+        createFilter({ ...value[0], field }),
+        createFilter({ ...value[1], field }),
+      ],
+    };
   }
 
   console.log('unsupported operator' ,operator);
