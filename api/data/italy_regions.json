@@ -1,0 +1,162 @@
+[
+	{
+		"id_regione": 1,
+		"regione": "Abruzzo",
+		"superficie": 10831.84,
+		"num_residenti": 1326513,
+		"num_comuni": 305,
+		"num_provincie": 4
+	},
+	{
+		"id_regione": 2,
+		"regione": "Basilicata",
+		"superficie": 10073.32,
+		"num_residenti": 573694,
+		"num_comuni": 131,
+		"num_provincie": 2
+	},
+	{
+		"id_regione": 3,
+		"regione": "Calabria",
+		"superficie": 15221.9,
+		"num_residenti": 1970521,
+		"num_comuni": 409,
+		"num_provincie": 5
+	},
+	{
+		"id_regione": 4,
+		"regione": "Campania",
+		"superficie": 13670.95,
+		"num_residenti": 5850850,
+		"num_comuni": 550,
+		"num_provincie": 5
+	},
+	{
+		"id_regione": 5,
+		"regione": "Emilia-Romagna",
+		"superficie": 22452.78,
+		"num_residenti": 4448146,
+		"num_comuni": 333,
+		"num_provincie": 9
+	},
+	{
+		"id_regione": 6,
+		"regione": "Friuli-Venezia Giulia",
+		"superficie": 7862.3,
+		"num_residenti": 1221218,
+		"num_comuni": 216,
+		"num_provincie": 4
+	},
+	{
+		"id_regione": 7,
+		"regione": "Lazio",
+		"superficie": 17232.29,
+		"num_residenti": 5888472,
+		"num_comuni": 378,
+		"num_provincie": 5
+	},
+	{
+		"id_regione": 8,
+		"regione": "Liguria",
+		"superficie": 5416.21,
+		"num_residenti": 1571053,
+		"num_comuni": 235,
+		"num_provincie": 4
+	},
+	{
+		"id_regione": 9,
+		"regione": "Lombardia",
+		"superficie": 23863.65,
+		"num_residenti": 10008349,
+		"num_comuni": 1524,
+		"num_provincie": 12
+	},
+	{
+		"id_regione": 10,
+		"regione": "Marche",
+		"superficie": 9401.38,
+		"num_residenti": 1543752,
+		"num_comuni": 229,
+		"num_provincie": 5
+	},
+	{
+		"id_regione": 11,
+		"regione": "Molise",
+		"superficie": 4460.65,
+		"num_residenti": 312027,
+		"num_comuni": 136,
+		"num_provincie": 2
+	},
+	{
+		"id_regione": 12,
+		"regione": "Piemonte",
+		"superficie": 25387.07,
+		"num_residenti": 4404246,
+		"num_comuni": 1201,
+		"num_provincie": 8
+	},
+	{
+		"id_regione": 13,
+		"regione": "Puglia",
+		"superficie": 19540.9,
+		"num_residenti": 4077166,
+		"num_comuni": 258,
+		"num_provincie": 6
+	},
+	{
+		"id_regione": 14,
+		"regione": "Sardegna",
+		"superficie": 24100.02,
+		"num_residenti": 1658138,
+		"num_comuni": 377,
+		"num_provincie": 5
+	},
+	{
+		"id_regione": 15,
+		"regione": "Sicilia",
+		"superficie": 25832.39,
+		"num_residenti": 5074261,
+		"num_comuni": 390,
+		"num_provincie": 9
+	},
+	{
+		"id_regione": 16,
+		"regione": "Toscana",
+		"superficie": 22987.04,
+		"num_residenti": 3744398,
+		"num_comuni": 276,
+		"num_provincie": 10
+	},
+	{
+		"id_regione": 17,
+		"regione": "Trentino-Alto Adige",
+		"superficie": 13605.5,
+		"num_residenti": 1059114,
+		"num_comuni": 293,
+		"num_provincie": 2
+	},
+	{
+		"id_regione": 18,
+		"regione": "Umbria",
+		"superficie": 8464.33,
+		"num_residenti": 891181,
+		"num_comuni": 92,
+		"num_provincie": 2
+	},
+	{
+		"id_regione": 19,
+		"regione": "Valle d'Aosta",
+		"superficie": 3260.9,
+		"num_residenti": 127329,
+		"num_comuni": 74,
+		"num_provincie": 1
+	},
+	{
+		"id_regione": 20,
+		"regione": "Veneto",
+		"superficie": 18407.42,
+		"num_residenti": 4915123,
+		"num_comuni": 576,
+		"num_provincie": 7
+	}
+]

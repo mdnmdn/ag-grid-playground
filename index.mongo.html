@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Grid sample</title>
+    <script src="libs/react.development.js"></script>
+    <script src="libs/react-dom.development.js"></script>
+		
+		<script src="libs/ag-grid-community.min.js"></script>
+		<!--<script src="libs/ag-grid-enterprise.min.js"></script>-->
+		<script src="libs/prop-types.min.js"></script>
+		<script src="libs/ag-grid-react.min.js"></script>    
+    <!-- Don't use this in production: -->
+    <script src="libs/babel.min.js"></script>
+
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+      const l = console.log;
+
+      const objectToParams = obj => {
+        let qs = '';
+        Object.keys(obj).forEach(k => {
+          const v = obj[k];
+          if (typeof v === 'function') { 
+            //skip
+          } else if (k === 'sortModel') {
+            if (v && v.length) {
+              const sort = v[0];
+              qs += `&sortModel=${encodeURIComponent(sort.colId)}:${sort.sort}`;
+            }
+          } else if (k === 'filterModel') {
+            if (v) {
+              const fields = Object.keys(v);
+              if (fields.length) {
+
+              qs += '&filterModel=';
+              const filters = fields.map( f => {
+                const filterData = v[f];
+                if (filterData.filter)
+                  return `${f}:::${filterData.type}:::${filterData.filter}`;
+                else {
+                  return `${f}:::${filterData.condition1.type}:::${filterData.condition1.filter}:::${filterData.operator}:::${filterData.condition2.type}:::${filterData.condition2.filter}`;
+                }
+                return null;
+              }).join('#');
+
+              qs += `${encodeURIComponent(filters)}`
+              }
+            }                    
+          } else {
+            if (v !== '' && v!== null) {
+              qs += `&${encodeURIComponent(k)}=${encodeURIComponent(v)}`;
+            }
+          }
+        });
+        return qs;
+      }
+
+      const serverSideDataSource = {
+        async getRows(params) {
+          const { request, successCallback, failCallback } = params;
+          l('getRows', {params});
+
+          try {
+            const req = await fetch('/api/mongo?' + objectToParams(request));
+            const data = await req.json();
+            l({data})
+            successCallback(data.rows, data.metadata.rows);
+          } catch(ex) {
+            console.error(ex);
+          }
+
+          
+        }
+      };
+
+      const loadingSpinnerColumn = {
+        // use a value getter to have the node id as this columns value
+        valueGetter: 'node.id',
+
+        // then a custom cellRenderer
+        cellRenderer: function(params) {
+            if (params.value === undefined) {
+                // when no node id, display the spinner image
+                return '<img src="loading.gif">'
+            } else {
+                // otherwise just display node id (or whatever you wish for this column)
+                return params.value;
+            }
+        }
+      }
+
+      const dataSource = {
+        async getRows(params) {
+          const { request, successCallback, failCallback } = params;
+          l('getRows', {params});
+
+          try {
+            const req = await fetch('/api/mongo?' + objectToParams(params));
+            const data = await req.json();
+            l({data})
+            successCallback(data.rows, data.metadata.rows);
+          } catch(ex) {
+            console.error(ex);
+          }
+
+          
+        }
+      };
+
+
+  const columnDefs = [
+      {
+        headerName: "Visita",
+        children:[ 
+          { headerName: "Date", field: "visitDate" },
+          { headerName: "Feedback", field: "feedback" },
+        ],
+      },
+      {
+        headerName: "Punto vendita",
+        children:[ 
+          {
+            headerName: "Id",
+            field: "id",
+            //cellRenderer: "loadingCellRenderer",
+          },
+          { headerName: "Name", field: "name" },
+          { headerName: "Address", field: "address" },
+          { headerName: "City", field: "city" },
+          { headerName: "Region", field: "region" },
+          { headerName: "Catena", field: "chain" },
+          { headerName: "Gruppo", field: "group" },
+          { headerName: "Organizzazione", field: "organization" },
+        ],
+      },
+      {
+        headerName: "Addetto",
+        children:[  
+          { headerName: "Cognome", field: "lastName" },
+          { headerName: "Nome", field: "firstName" },
+          { headerName: "Email", field: "email" },
+          { headerName: "Telefono", field: "phone" },
+        ]
+      },
+    ];
+
+		const R = () =>  {
+        
+        const gridInit = grid => {
+          grid.api.setDatasource(dataSource);
+          //grid.api.setServerSideDatasource(serverSideDataSource);
+        }
+
+        return (<div 
+        className="ag-theme-balham"
+        style={{ 
+        height: '500px', 
+        //width: '600px',
+        width: '100%',
+       }} 
+      >
+      <AgGridReact.AgGridReact
+       rowModelType="infinite"
+        onGridReady={gridInit}        
+        columnDefs={columnDefs} 
+        floatingFilter={true}
+        defaultColDef={{
+            minWidth: 50,
+            sortable: true,
+            filter: true,
+            resizable: true,
+            floatingFilter: true,
+            floatCell: true,
+        }}
+        >
+      </AgGridReact.AgGridReact>
+      </div>);
+    }
+
+      ReactDOM.render(
+        //<h1>Hello, world!</h1>,
+				<R />,
+        document.getElementById('root')
+      );
+
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+  </body>
+</html>
