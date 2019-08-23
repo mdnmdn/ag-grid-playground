@@ -36,7 +36,20 @@ const columnDefs = [{
   headerName: "Label",
   field: "labels",
   enableRowGroup: true,
-},{
+},
+{
+  headerName: "Label 2",
+  field: "labels2",
+  enableRowGroup: true,
+  hide: true,
+},
+{
+  headerName: "Label 3",
+  field: "labels3",
+  enableRowGroup: true,
+  hide: true,
+},
+{
   headerName: "Status",
   field: "state",
   enableRowGroup: true,
@@ -86,13 +99,15 @@ const Grid = () => {
         time_estimate: formatTime(i.time_stats.time_estimate),
         total_time_spent: formatTime(i.time_stats.total_time_spent),
         labels: i.labels,
+        labels2: i.labels,
+        labels3: i.labels,
         project_url: i.web_url,
       };
     });
     
     l({data});
     grid.api.setRowData(data);
-    grid.api.autoSizeColumns();
+    grid.api.sizeColumnsToFit();
   }
 
   return (<div

@@ -2,6 +2,8 @@
 import { getAccessToken, logout } from './auth.js';
 
 const baseUrl = 'https://gitlab.com/api/v4';
+const rootGroup = 2098140; // web
+//const rootGroup = 2045876; // syn
 
 const get = async (url) => {
   const token = getAccessToken();
@@ -12,7 +14,7 @@ const get = async (url) => {
       method: 'GET',
       // headers: { 'Authentication': `Bearer ${token}`, },
     });
-    console.log({req})
+    //console.log({req})
     if (req.status === 401) logout();
     const data = await req.json();
     return data;
@@ -38,10 +40,10 @@ const pagedLoad = async (url) => {
 }
 
 export const loadIssues = () => {
-  return pagedLoad('/groups/2098140/issues');
+  return pagedLoad(`/groups/${rootGroup}/issues`);
 }
 
 export const loadProjects = () => {
-  return pagedLoad('/groups/2098140/projects');;
+  return pagedLoad(`/groups/${rootGroup}/projects?include_subgroups=true`);
 }
 HTMLFormControlsCollection.el
